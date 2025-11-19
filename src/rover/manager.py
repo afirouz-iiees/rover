@@ -622,7 +622,8 @@ class Source(SqliteSupport):
 
     def _parse_line(self, line):
         try:
-            n, s, l, c, b, e = ('' if token == '--' else token for token in line.split())
+            n, s, c, b, e = ('' if token == '--' else token for token in line.split())
+            l=""
             return "%s_%s_%s_%s" % (n, s, l, c), parse_epoch(b), parse_epoch(e)
         except:
             raise Exception('Could not parse "%s" in the response from the availability service' % line)
